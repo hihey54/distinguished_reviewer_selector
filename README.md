@@ -8,7 +8,7 @@ The intention is to compute quantifiable metrics usable to identify PC members t
 
 Requires **Python 3.10+**. The main pipeline uses only the Python standard library.
 
-1. Clone the repository and install `requirements.txt`
+1. Clone the repository (and install `requirements.txt` if you want to use notebooks)
 2. Retrieve data from HotCRP (note: only PC chairs / admins can do so)
 3. In `code/main.py`, configure `MIN_REVIEWS`, `ROUND_STARTS`, and `DEADLINES` for the venue. Round dates must include UTC offsets. Optionally adjust the emergency grace period and word-count thresholds.
 4. From the project root, run:

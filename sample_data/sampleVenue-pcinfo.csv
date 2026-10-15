@@ -1,0 +1,9 @@
+﻿given_name,family_name,email,affiliation,orcid,country,roles,tags,collaborators,follow,topic: AI Security,topic: AI Privacy,topic: Human Factors
+Reviewer,01,reviewer01@example.invalid,Synthetic Example Institute,,ZZ,pc,,,,2,1,0
+Reviewer,02,reviewer02@example.invalid,Synthetic Example Institute,,ZZ,pc,,,,2,1,0
+Reviewer,03,reviewer03@example.invalid,Synthetic Example Institute,,ZZ,pc,,,,2,1,
+Reviewer,04,reviewer04@example.invalid,Synthetic Example Institute,,ZZ,pc,,,,2,1,0
+Reviewer,05,reviewer05@example.invalid,Synthetic Example Institute,,ZZ,pc,,,,2,1,
+Reviewer,06,reviewer06@example.invalid,Synthetic Example Institute,,ZZ,pc,,,,2,1,0
+Reviewer,07,reviewer07@example.invalid,Synthetic Example Institute,,ZZ,pc,,,,2,1,0
+Reviewer,08,reviewer08@example.invalid,Synthetic Example Institute,,ZZ,pc,,,,2,1,0

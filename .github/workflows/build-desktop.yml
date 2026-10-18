@@ -2,9 +2,16 @@ name: Build native PC Recognition Selector
 
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Optional existing release tag to upload assets to (e.g., v1.0.0)'
+        required: false
+        default: ''
+        type: string
   push:
     paths:
       - 'desktop_app/**'
+      - 'FAQ.md'
       - 'code/**'
       - '.github/workflows/build-desktop.yml'
       - '.github/scripts/package_release.py'
@@ -62,10 +69,11 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-  # Only a published release receives assets; ordinary commits upload workflow
-  # artifacts for maintainers to inspect, without creating public releases.
+  # Attach on a newly published release, or manually to an existing release
+  # when a tag is supplied in the workflow_dispatch form. Ordinary commits
+  # only produce workflow artifacts and do not overwrite release assets.
   attach-release:
-    if: github.event_name == 'release'
+    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && inputs.release_tag != '')
     needs: package
     runs-on: ubuntu-22.04
     permissions:
@@ -79,6 +87,9 @@ jobs:
       - name: Attach platform builds to the GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.event.release.tag_name }}
+          TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.release_tag }}
+          GH_REPO: ${{ github.repository }}
         run: |
-          gh release upload "$TAG" release/* --clobber
+          # This job downloads build artifacts but has no Git checkout.
+          # --repo avoids relying on a local .git directory.
+          gh release upload "$TAG" release/* --clobber --repo "$GH_REPO"
